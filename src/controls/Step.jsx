@@ -1,5 +1,6 @@
 import  React from 'react';
 import { Control } from 'rete';
+import './Step.css';
 
 export default class StepControl extends Control {
   static component = ({ uses, name, run,onChange, updateName, updateRun, updateCustom }) => {
@@ -35,15 +36,15 @@ export default class StepControl extends Control {
     />;
     }
   return (
-    <div>
-    <p>
+    <div className='wrapper'>
+    <div className="flex">
       <label>
 	<input type="radio"  onClick={() => handleRadio(false) }  checked={!isCustom} onChange={() => {}} /> Uses
       </label>
       <label>
 	<input type="radio"  onClick={() => handleRadio(true) } checked={isCustom} onChange={() => {}} /> Custom
       </label>
-    </p>
+    </div>
     {step}
     </div>
   );

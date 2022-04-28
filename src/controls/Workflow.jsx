@@ -1,15 +1,13 @@
 import React from 'react';
 import { Control } from 'rete';
+import './Workflow.css';
 
 export default class WorkflowControl extends Control {
   static component = ({ name, onChange, onUpdateName }) => (
-    <div>
-      <p>
+    <div className='wrapper'>
       <label>name:</label>
       <input type="text" value={name} onChange={(e) => onUpdateName(e.target.value) } />
-      </p>
-     <p> 
-    <label>on:</label>
+      <label>on:</label>
     <select
       ref={(ref) => {
         ref && ref.addEventListener("pointerdown", (e) => e.stopPropagation());
@@ -18,7 +16,6 @@ export default class WorkflowControl extends Control {
     <option value="push">push</option>
     <option value="pull_request">pull_request</option>
     </select>
-     </p>
     </div>
   );
 

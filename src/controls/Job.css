@@ -1,0 +1,33 @@
+.wrapper {
+    text-align: left;
+}
+
+.flex {
+    display: flex;
+}
+
+.wrapper p {
+    padding: 0;
+    margin: 0.25em 0;
+}
+.wrapper input {
+    padding: 0.5em;
+    display: block;
+    margin: 0.25em 0;
+}
+
+input[type="radio"] {
+    display: inline;
+    margin-left: 0.5em;
+}
+
+.wrapper label {
+    font-weight: bold;
+    display: block;
+}
+
+select {
+    padding: 0.5em;
+    width: 100%;
+    margin: 0.25em 0;
+}

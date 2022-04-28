@@ -22,15 +22,15 @@ export async function generate(data) {
       case 'Job':
 	workflow.jobs[node.id] = {
 	    name: node.data.name,
-	    'runs-on': 'ubuntu-latest',
-	    steps: []
+	    'runs-on': node.data.runner,
 	};
         break;
 
       case 'Step':
 	if(node.inputs.step.connections.length > 0) {
 	    let _job = node.inputs.step.connections[0].node;
-	    let _steps = workflow.jobs[_job].steps || [];
+	    workflow.jobs[_job].steps = workflow.jobs[_job].steps || [];
+	    let _steps = workflow.jobs[_job].steps;
 	    if(node.data.custom) {
 		const {name, run} = node.data;
 		_steps.push({name, run});
