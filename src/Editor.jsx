@@ -19,7 +19,7 @@ function Editor() {
           connections: [
             {
               node: 2,
-              input: "num1",
+              input: "job",
               data: {}
             }
           ]
@@ -33,13 +33,22 @@ function Editor() {
       data: {
         name: 'lint' 
       },
-      inputs: {},
+      inputs: {
+	job: {
+	  connections: [
+	    {
+	      node: 1,
+	      input: 'workflow'
+	    }
+	  ]
+	}
+      },
       outputs: {
         step: {
           connections: [
             {
               node: 3,
-              input: "num1",
+              input: "step",
               data: {}
             }
           ]
@@ -54,7 +63,16 @@ function Editor() {
         custom: false,
 	uses: 'actions/checkout@v2'
       },
-      inputs: {},
+      inputs: {
+	step: {
+	  connections: [
+	    {
+	      node: 2,
+	      output: 'step'
+	    }
+	  ]
+	}
+      },
       outputs: {},
       position: [900, 10],
       name: "Step"

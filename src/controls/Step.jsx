@@ -2,7 +2,7 @@ import  React from 'react';
 import { Control } from 'rete';
 
 export default class StepControl extends Control {
-  static component = ({ value, onChange, updateName, updateRun, updateCustom }) => {
+  static component = ({ uses, name, run,onChange, updateName, updateRun, updateCustom }) => {
     
   const [isCustom, setIsCustom] = React.useState(false);
 
@@ -16,18 +16,18 @@ export default class StepControl extends Control {
       step = (<div>
 	<p>
 	  <label>Name:</label>
-	<input type="text"  onChange={(e) => updateName(e.target.value) } />
+	<input type="text"  value={name} onChange={(e) => updateName(e.target.value) } />
 	</p>
 	<p>
 	  <label>Run:</label>
-	<input type="text"  onChange={(e) => updateRun(e.target.value) } />
+	<input type="text" value={run}  onChange={(e) => updateRun(e.target.value) } />
 	</p>
       </div>);
       
     } else {
       step = <input
       type="text"
-      value={value}
+      value={uses}
       ref={(ref) => {
         ref && ref.addEventListener("pointerdown", (e) => e.stopPropagation());
       }}
@@ -38,10 +38,10 @@ export default class StepControl extends Control {
     <div>
     <p>
       <label>
-	<input type="radio" name="custom" onClick={() => handleRadio(false) }  checked={!isCustom} onChange={() => {}} /> Uses
+	<input type="radio"  onClick={() => handleRadio(false) }  checked={!isCustom} onChange={() => {}} /> Uses
       </label>
       <label>
-	<input type="radio" name="custom" onClick={() => handleRadio(true) } checked={isCustom} onChange={() => {}} /> Custom
+	<input type="radio"  onClick={() => handleRadio(true) } checked={isCustom} onChange={() => {}} /> Custom
       </label>
     </p>
     {step}
@@ -55,12 +55,13 @@ export default class StepControl extends Control {
     this.key = key;
     this.component = StepControl.component;
 
-    const initial = node.data[key] || "";
-
-    node.data[key] = initial;
+    node.data['uses'] = 'actions/checkout@v2'; 
+    node.data['custom'] = false;
     this.props = {
       readonly,
-      value: initial,
+      uses: node.data['uses'],
+      name: node.data['name'] || 'npm install',
+      run: node.data['run'] || 'npm i',
       onChange: (v) => {
         this.setValue(v);
         this.emitter.trigger("process");
@@ -81,7 +82,7 @@ export default class StepControl extends Control {
   }
 
   setValue(val) {
-    this.props.value = val;
+    this.props.uses = val;
     this.putData('uses', val);
     this.update();
   }
@@ -101,6 +102,8 @@ export default class StepControl extends Control {
   setCustom(val) {
     this.props.custom = val;
     this.putData('custom', val);
+    this.putData('name', this.props.name);
+    this.putData('run', this.props.run);
     this.update();
   }
 }

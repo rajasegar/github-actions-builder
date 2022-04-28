@@ -2,12 +2,12 @@ import React from 'react';
 import { Control } from 'rete';
 
 export default class JobControl extends Control {
-  static component = ({ value, onChange }) => (
+  static component = ({ name, onChange }) => (
     <div>
       <label>Name:</label>
     <input
       type="text"
-      value={value}
+      value={name}
       ref={(ref) => {
         ref && ref.addEventListener("pointerdown", (e) => e.stopPropagation());
       }}
@@ -22,12 +22,12 @@ export default class JobControl extends Control {
     this.key = key;
     this.component = JobControl.component;
 
-    const initial = node.data[key] || "";
+    const initial = node.data[key] || "Lint";
 
     node.data[key] = initial;
     this.props = {
       readonly,
-      value: initial,
+      name: initial,
       onChange: (v) => {
         this.setValue(v);
         this.emitter.trigger("process");
@@ -36,7 +36,7 @@ export default class JobControl extends Control {
   }
 
   setValue(val) {
-    this.props.value = val;
+    this.props.name = val;
     this.putData('name', val);
     this.update();
   }

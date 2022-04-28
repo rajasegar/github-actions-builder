@@ -2,11 +2,11 @@ import React from 'react';
 import { Control } from 'rete';
 
 export default class WorkflowControl extends Control {
-  static component = ({ value, onChange, onUpdateName }) => (
+  static component = ({ name, onChange, onUpdateName }) => (
     <div>
       <p>
       <label>name:</label>
-      <input type="text" onChange={(e) => onUpdateName(e.target.value) } />
+      <input type="text" value={name} onChange={(e) => onUpdateName(e.target.value) } />
       </p>
      <p> 
     <label>on:</label>
@@ -28,12 +28,12 @@ export default class WorkflowControl extends Control {
     this.key = key;
     this.component = WorkflowControl.component;
 
-    const initial = node.data[key] || "";
+    const initial = node.data[key] || "Sample Workflow";
 
     node.data[key] = initial;
     this.props = {
       readonly,
-      value: initial,
+      name: initial,
       onChange: (v) => {
         this.setValue(v);
         this.emitter.trigger("process");
