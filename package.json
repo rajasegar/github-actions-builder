@@ -1,0 +1,25 @@
+{
+  "name": "rete-github-actions-builder",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "regenerator-runtime": "^0.13.9",
+    "rete": "^1.4.7",
+    "rete-area-plugin": "^0.2.1",
+    "rete-connection-plugin": "^0.9.0",
+    "rete-context-menu-plugin-react": "^0.0.8",
+    "rete-react-render-plugin": "^0.2.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^1.0.7",
+    "vite": "^2.8.0"
+  }
+}
