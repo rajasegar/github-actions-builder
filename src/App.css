@@ -1,6 +1,7 @@
 .App {
   text-align: center;
   height: 100vh;
+  overflow: hidden;
 }
 
 .App-logo {
@@ -49,11 +50,11 @@ button {
 
 .editor-wrapper {
     max-width: 75vw;
-    height: 100vh;
+    height: calc(100vh - 100px);
 }
 
 .code-wrapper {
-    height: 100vh;
+    height: calc(100vh - 100px);
     width: 100%;
 }
 

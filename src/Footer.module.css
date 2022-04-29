@@ -1,0 +1,22 @@
+footer {
+    background: var(--elephant);
+    text-align: center;
+  color: var(--smoke);
+  height: 50px;
+  max-height: 50px;
+    padding: 0.25em 0;
+
+}
+
+a {
+    color: var(--smoke);
+    text-decoration: none;
+}
+
+p {
+    margin: 0;
+    line-height: 2;
+}
+.red {
+    color: red;
+}

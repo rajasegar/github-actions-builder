@@ -1,0 +1,20 @@
+header {
+  padding: 0.25em 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--elephant);
+  color: var(--smoke);
+  height: 50px;
+  max-height: 50px;
+}
+
+.brand {
+  font-size: 1em;
+  padding-left: 1em;
+  width: 200px;
+}
+
+.brand span {
+  font-weight: normal;
+}
