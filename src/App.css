@@ -53,11 +53,3 @@ button {
     height: calc(100vh - 100px);
 }
 
-.code-wrapper {
-    height: calc(100vh - 100px);
-    width: 100%;
-}
-
-.code {
-    width: 100%;
-}

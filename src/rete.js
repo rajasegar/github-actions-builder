@@ -1,9 +1,9 @@
 import "regenerator-runtime/runtime.js";
 import React, { useState, useEffect, useRef } from "react";
+
 import { NodeEditor, Engine } from "rete";
 import ReactRenderPlugin from "rete-react-render-plugin";
 import ConnectionPlugin from "rete-connection-plugin";
-import AreaPlugin from "rete-area-plugin";
 
 import WorkflowComponent from "./components/Workflow";
 import JobComponent from "./components/Job";
@@ -12,6 +12,7 @@ import StepComponent from "./components/Step";
 import ContextMenuPlugin, { ReactMenu } from "rete-context-menu-plugin-react";
 
 export async function createEditor(container, config, onChange) {
+
   var components = [
       new WorkflowComponent(),
       new JobComponent(),
@@ -35,28 +36,31 @@ export async function createEditor(container, config, onChange) {
 
   editor.on(
     "process nodecreated noderemoved connectioncreated connectionremoved",
-    async () => {
+			async () => {
       await engine.abort();
       await engine.process(editor.toJSON());
       await onChange(editor.toJSON());
-    }
+			}
   );
 
   editor.view.resize();
   editor.trigger("process");
-  // AreaPlugin.zoomAt(editor, editor.nodes);
 
     //Load up the initial config
   if (config) {
+			const _config = structuredClone(config);
     await engine.abort();
-    editor.fromJSON(config);
+    editor.fromJSON(_config);
   }
+    
+return editor;
 
 }
 
 export function useRete(config, onChange) {
   const [container, setContainer] = useState(null);
   const editorRef = useRef();
+
 
   useEffect(() => {
     if (container) {
@@ -65,7 +69,7 @@ export function useRete(config, onChange) {
         editorRef.current = value;
       });
     }
-  }, [container]);
+  }, [config, container]);
 
   useEffect(() => {
     return () => {
@@ -76,5 +80,5 @@ export function useRete(config, onChange) {
     };
   }, []);
 
-  return [setContainer];
+		return [setContainer];
 }

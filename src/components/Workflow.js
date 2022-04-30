@@ -10,7 +10,7 @@ export default class WorkflowComponent extends Component {
 
   builder(node) {
     var out1 = new Output("job", "Job", jobSocket);
-    var ctrl = new WorkflowControl(this.editor, "job", node);
+    var ctrl = new WorkflowControl(this.editor, "workflow", node);
 
     return node.addControl(ctrl).addOutput(out1);
   }

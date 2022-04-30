@@ -25,12 +25,9 @@ export default class WorkflowControl extends Control {
     this.key = key;
     this.component = WorkflowControl.component;
 
-    const initial = node.data[key] || "Sample Workflow";
-
-    node.data[key] = initial;
     this.props = {
       readonly,
-      name: initial,
+      name: node.data['name'],
       onChange: (v) => {
         this.setValue(v);
         this.emitter.trigger("process");

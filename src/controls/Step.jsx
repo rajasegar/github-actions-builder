@@ -1,11 +1,11 @@
-import  React from 'react';
+import  React, { useState } from 'react';
 import { Control } from 'rete';
 import './Step.css';
 
 export default class StepControl extends Control {
-  static component = ({ uses, name, run,onChange, updateName, updateRun, updateCustom }) => {
+  static component = ({ uses, name, run, custom, onChange, updateName, updateRun, updateCustom }) => {
     
-  const [isCustom, setIsCustom] = React.useState(false);
+  const [isCustom, setIsCustom] = useState(custom);
 
     function handleRadio(value) {
       setIsCustom(value);
@@ -56,13 +56,13 @@ export default class StepControl extends Control {
     this.key = key;
     this.component = StepControl.component;
 
-    node.data['uses'] = 'actions/checkout@v2'; 
-    node.data['custom'] = false;
+			
     this.props = {
       readonly,
       uses: node.data['uses'],
       name: node.data['name'] || 'npm install',
       run: node.data['run'] || 'npm i',
+		custom: node.data['custom'] || false,
       onChange: (v) => {
         this.setValue(v);
         this.emitter.trigger("process");
@@ -102,9 +102,9 @@ export default class StepControl extends Control {
 
   setCustom(val) {
     this.props.custom = val;
-    this.putData('custom', val);
-    this.putData('name', this.props.name);
-    this.putData('run', this.props.run);
-    this.update();
+			this.putData('custom', val);
+			this.putData('name', this.props.name);
+			this.putData('run', this.props.run);
+	  this.update();
   }
 }

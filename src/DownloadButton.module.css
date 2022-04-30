@@ -1,0 +1,10 @@
+.container { 
+padding: 0 1em;
+}
+button {
+background: transparent;
+color: white;
+border: none;
+cursor: pointer;
+font-size: 0.85em;
+}

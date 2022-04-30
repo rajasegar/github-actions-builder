@@ -36,12 +36,9 @@ export default class JobControl extends Control {
     this.key = key;
     this.component = JobControl.component;
 
-    const initial = node.data[key] || "Lint";
-
-    node.data[key] = initial;
     this.props = {
       readonly,
-      name: initial,
+      name: node.data['name'],
       runner: 'ubuntu-latest',
       onChange: (v) => {
         this.setValue(v);

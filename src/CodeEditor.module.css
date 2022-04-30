@@ -1,0 +1,14 @@
+textarea {
+    height: 100%;
+}
+
+
+.codeWrapper {
+    height: calc(100vh - 100px);
+    width: 100%;
+    overflow: hidden;
+}
+
+.code {
+    width: 100%;
+}

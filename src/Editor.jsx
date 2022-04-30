@@ -1,35 +1,20 @@
-import { useState } from 'react';
 import { useRete } from "./rete";
 
-import { generate } from './plugins/code';
-import initialData from './initialData';
+import { selectEditor } from './features/editorSlice';
+import { useSelector } from 'react-redux';
 
-function Editor() {
+function Editor({onChange}) {
 
-	const [code, setCode] = useState('');
+    const config = useSelector(selectEditor);
 
-	async function onChange(data) {
-    const sourceCode = await generate(data);
-    setCode(sourceCode);
-  }
+	const [setContainer] = useRete(config, onChange);
 
-  const [setContainer] = useRete(initialData, onChange);
-
-  function handleChange() {
-    
-  }
-
-  return (
-    <div className="grid">
-    <div className="editor-wrapper" 
-      ref={(ref) => ref && setContainer(ref)}
-    styles={{height: 'calc(100vh - 100px)'}}
-    />
-    <div className="code-wrapper">
-      <textarea rows="50" className="code" value={code} onChange={handleChange} />
-    </div>
-    </div>
-  );
+	return (
+			<div className="editor-wrapper"
+				ref={(ref) => ref && setContainer(ref)}
+				styles={{ height: 'calc(100vh - 100px)' }}
+			/>
+	);
 }
 
 export default Editor;

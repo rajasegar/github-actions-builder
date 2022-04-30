@@ -12,7 +12,7 @@ export default class JobComponent extends Component {
   builder(node) {
     const input = new Input("job", "Job", jobSocket);
     var out1 = new Output("step", "Step", stepSocket);
-    var ctrl = new JobControl(this.editor, "step", node);
+    var ctrl = new JobControl(this.editor, "job", node);
 
       return node
 	  .addControl(ctrl)
